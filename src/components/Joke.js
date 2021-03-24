@@ -1,35 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import {
-  CssBaseline,
-  Container,
-  Typography,
-  Paper,
-  Box,
-  Grid,
-  Button,
-} from '@material-ui/core';
-import { borders } from '@material-ui/system';
+import React, { useState } from 'react';
+import { Box, Button } from '@material-ui/core';
 
 export default function Joke({ joke }) {
-  // const API_URL_categories = `http://api.icndb.com/jokes/random?limitTo=[${category}]`;
-
-  // const [joke, setJoke] = useState('');
   const [buttonText, setButtonText] = useState('Open for more');
+  const [jokeText, setJokeText] = useState('');
 
-  // useEffect(() => {
-  //   fetch(API_URL_categories)
-  //     .then((res) => res.json())
-  //     // .then((data) => setJoke(data.value));
-  //     .then((res) => {
-  //       console.log(res);
-  //       setJoke(res.value.joke);
-  //     });
-  // }, []);
+  const handleClick = () => {
+    buttonText === 'Open for more'
+      ? setButtonText('Close for less')
+      : setButtonText('Open for more');
+    buttonText === 'Open for more' ? setJokeText(joke.joke) : setJokeText('');
+  };
 
   return (
     <div>
       <Box
-        width="700px"
+        width="1200px"
         display="flex"
         justifyContent="center"
         // p={1}
@@ -40,12 +26,15 @@ export default function Joke({ joke }) {
       >
         <Box m={5}>CHUCK NORRIS JOKE</Box>
         <Box m={5}>
-          Category: {joke.categories[0] ? joke.categories[0] : 'General joke'}
+          Category: {joke.categories[0] ? joke.categories[0] : 'general joke'}
         </Box>
         <Box m={5}>
-          <Button variant="contained"> {buttonText} </Button>
+          <Button variant="contained" onClick={handleClick}>
+            {' '}
+            {buttonText}{' '}
+          </Button>
         </Box>
-        <Box m={5}>{joke.joke}</Box>
+        <Box m={5}>{jokeText}</Box>
       </Box>
     </div>
   );
