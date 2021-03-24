@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 //Components
 import Joke from './components/Joke';
 
-const API_URL_jokes = `http://api.icndb.com/jokes/random/3`;
+const API_URL_jokes = `http://api.icndb.com/jokes/random/3:splat 200`;
 
 function App() {
   const [jokes, setJokes] = useState([]);
