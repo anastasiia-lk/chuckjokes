@@ -10,21 +10,21 @@ import {
 } from '@material-ui/core';
 import { borders } from '@material-ui/system';
 
-export default function Joke({ category }) {
-  const API_URL_categories = `http://api.icndb.com/jokes/random?limitTo=[${category}]`;
+export default function Joke({ joke }) {
+  // const API_URL_categories = `http://api.icndb.com/jokes/random?limitTo=[${category}]`;
 
-  const [joke, setJoke] = useState('');
+  // const [joke, setJoke] = useState('');
   const [buttonText, setButtonText] = useState('Open for more');
 
-  useEffect(() => {
-    fetch(API_URL_categories)
-      .then((res) => res.json())
-      // .then((data) => setJoke(data.value));
-      .then((res) => {
-        console.log(res);
-        setJoke(res.value.joke);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(API_URL_categories)
+  //     .then((res) => res.json())
+  //     // .then((data) => setJoke(data.value));
+  //     .then((res) => {
+  //       console.log(res);
+  //       setJoke(res.value.joke);
+  //     });
+  // }, []);
 
   return (
     <div>
@@ -39,11 +39,13 @@ export default function Joke({ category }) {
         borderColor="grey.500"
       >
         <Box m={5}>CHUCK NORRIS JOKE</Box>
-        <Box m={5}>Category: {category}</Box>
+        <Box m={5}>
+          Category: {joke.categories[0] ? joke.categories[0] : 'General joke'}
+        </Box>
         <Box m={5}>
           <Button variant="contained"> {buttonText} </Button>
         </Box>
-        <Box m={5}>{joke}</Box>
+        <Box m={5}>{joke.joke}</Box>
       </Box>
     </div>
   );
